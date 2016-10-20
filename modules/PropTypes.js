@@ -1,31 +1,41 @@
 import { PropTypes } from 'react'
 
-export const action = PropTypes.oneOf([
-  'PUSH',
-  'REPLACE',
-  'POP'
-])
+export let action = {}
 
-export const matchContext = PropTypes.shape({
+if (__DEV__) {
+  action = PropTypes.oneOf([
+    'PUSH',
+    'REPLACE',
+    'POP'
+  ])
+}
+
+export let matchContext = PropTypes.shape({
   addMatch: PropTypes.func.isRequired,
   removeMatch: PropTypes.func.isRequired
 })
 
-export const history = PropTypes.shape({
-  listen: PropTypes.func.isRequired,
-  listenBefore: PropTypes.func.isRequired,
-  push: PropTypes.func.isRequired,
-  replace: PropTypes.func.isRequired,
-  go: PropTypes.func.isRequired
-})
+export let history = {}
+if (__DEV__) {
+  history = PropTypes.shape({
+    listen: PropTypes.func.isRequired,
+    listenBefore: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired,
+    replace: PropTypes.func.isRequired,
+    go: PropTypes.func.isRequired
+  })
+}
 
-export const location = PropTypes.shape({
-  pathname: PropTypes.string.isRequired,
-  search: PropTypes.string.isRequired,
-  hash: PropTypes.string.isRequired,
-  state: PropTypes.any,
-  key: PropTypes.string
-})
+export let location = {}
+if (__DEV__) {
+  location = PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+    search: PropTypes.string.isRequired,
+    hash: PropTypes.string.isRequired,
+    state: PropTypes.any,
+    key: PropTypes.string
+  })
+}
 
 export const historyContext = PropTypes.shape({
   action: action.isRequired,
@@ -45,4 +55,3 @@ export const routerContext = PropTypes.shape({
   blockTransitions: PropTypes.func.isRequired,
   createHref: PropTypes.func.isRequired
 })
-
